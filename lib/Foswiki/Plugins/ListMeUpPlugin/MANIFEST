@@ -1,0 +1,5 @@
+!noci
+data/System/ListMeUpPlugin.txt 0644 Documentation page
+data/Sandbox/PluginTestListMeUpPlugin.txt 0644 Examples
+lib/Foswiki/Plugins/ListMeUpPlugin.pm 0444 Perl module
+# lib/Foswiki/Plugins/ListMeUpPlugin/Config.spec 0444 Configuration

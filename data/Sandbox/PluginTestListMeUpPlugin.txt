@@ -1,0 +1,29 @@
+%META:TOPICINFO{author="ProjectContributor" comment="reprev" date="1311610305" format="1.1" reprev="1" version="1"}%
+---+ %TOPIC%
+
+%BUTTON{ 
+  "%SPACEOUT{%WIKINAME%}%" 
+  icon="add" 
+  onclick="$.post('%SCRIPTURL{rest}%/ListMeUpPlugin/add',{webtopic:'%WEB%.%TOPIC%',name:'MYLIST',type:'PREFERENCE',item:'%WIKINAME%',sort:'1'},function(data){if (data=='200 Ok') location.reload();});"
+}%
+%BUTTON{ 
+  "%SPACEOUT{%WIKINAME%}%" 
+  icon="delete" 
+  onclick="$.post('%SCRIPTURL{rest}%/ListMeUpPlugin/remove',{webtopic:'%WEB%.%TOPIC%',name:'MYLIST',type:'PREFERENCE',item:'%WIKINAME%'},function(data){if (data=='200 Ok') location.reload();});"
+}%
+%BUTTON{ 
+  "Oliver Krueger" 
+  icon="add" 
+  onclick="$.post('%SCRIPTURL{rest}%/ListMeUpPlugin/add',{webtopic:'%WEB%.%TOPIC%',name:'MYLIST',type:'PREFERENCE',item:'OliverKrueger',sort:'1'},function(data){if (data=='200 Ok') location.reload();});"
+}%
+%BUTTON{ 
+  "Oliver Krueger" 
+  icon="delete" 
+  onclick="$.post('%SCRIPTURL{rest}%/ListMeUpPlugin/remove',{webtopic:'%WEB%.%TOPIC%',name:'MYLIST',type:'PREFERENCE',item:'OliverKrueger'},function(data){if (data=='200 Ok') location.reload();});"
+}%
+%CLEAR%
+
+*Test data:* <pre>%MYLIST%</pre>
+
+%META:PREFERENCE{name="TINYMCEPLUGIN_DISABLE" title="TINYMCEPLUGIN_DISABLE" type="Local" value="1"}%
+%META:PREFERENCE{name="MYLIST" title="MYLIST" type="Local" value="OliverKrueger"}%

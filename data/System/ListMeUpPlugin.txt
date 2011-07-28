@@ -1,0 +1,68 @@
+%META:TOPICPARENT{name="Plugins"}%
+<!--
+One line description, required for extensions repository catalog.
+   * Set SHORTDESCRIPTION = Add/remove items from a given list (in META data).
+-->
+---+ List Me Up Plugin
+
+This plugin offers a REST interface and is usually called in a XHR environment. It is used to add/remove items to/from a list stored in the meta data of a topic (formfields, topic settings etc).
+
+Using this plugin you have to perform only a single step to manipulate a list instead of ping-pong data between the webserver and the webbrowser. 
+
+
+---++ Motivation
+Let's say you have a [[System.DataForms][DataForm]] named !EventForm and a field called _Attendees_ within that form which holds a comma-separated list of names. You want to offer an "Add me" button for your users to put themselves onto the list of Attendees.
+
+Your javascript behind the button has to perform three steps: 
+   1 get the current list of attendees, 
+   1 manipulate the list within the browser and 
+   1 write back the new compiled list. 
+If there is a delay between step 1 and 3 (for whatever reason), another user may interfere and raise an update anomaly.
+
+
+---++ Example
+See Sandbox.PluginTestListMeUpPlugin (!JQueryPlugin needed).
+
+---++ REST interface
+%I% *Note:* You have to be authenticated and use HTTP POST requests for all verbs.
+
+---+++ =add= / =remove= verb
+| *Parameter* | *Description* | *Default* |
+| =webtopic= | Web.Topic, location where the list is stored. | _none_ |
+| =name= | Name of the list (ie. field name of preference name) | _none_ |
+| =type= | List type (=FIELD=, =PREFERENCE= or any custom type) | =FIELD= |
+| =item= | Value to be added/removed to/from the list. %BR% On =remove= all instances of =item= will be removed. Empty entries will be removed. | _none_ |
+| =separator= | Seperator between items in the list | =,&nbsp;= |
+| =split= | Regex how to split up the list | =[,\s]+= |
+| =duplicate= | Allow duplicate items to be added to the list. This does not affect duplicates which are already there. | =off= |
+| =sort= | Sort the list. | =off= |
+
+Possible return codes:
+
+| *Code* | *Text* |
+| 200 | Ok |
+| 400 | Missing parameter 'webtopic'. |
+| 400 | Missing parameter 'name'. |
+| 400 | Missing parameter 'item'. |
+| 403 | Forbidden. |
+| 404 | Topic not found. |
+| 404 | Metadata not found. |
+| 500 | Error saving topic. |
+
+The handler may return a =200 Ok= even if nothing was changed (due to a duplicate).
+
+---++ Installation
+%$INSTALL_INSTRUCTIONS%
+
+---++ Info
+
+|  Author: | Foswiki:Main.OliverKrueger |
+|  Copyright: | &copy; 2011, Foswiki Contributors |
+|  License: | GPL ([[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]]) |
+|  Release: | %$RELEASE% |
+|  Version: | %$VERSION% |
+|  Change&nbsp;History: | <!-- versions below in reverse order -->&nbsp; |
+|  1.0.0 (20 Jul 2011): | Initial version |
+|  Home: | http://foswiki.org/Extensions/%TOPIC% |
+|  Support: | http://foswiki.org/Support/%TOPIC% |
+
